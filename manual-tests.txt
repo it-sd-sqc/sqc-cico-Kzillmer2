@@ -79,6 +79,13 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Input should only accept the first 8 digits.
 
+# Module 5: Status Panel Continue Button
 
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field and click Update.
+3. Click the "Continue" button on the status panel.
 
-
+## Expected results
+* The status panel should appear after step 2.
+* The main panel should appear immediately after step 3.
