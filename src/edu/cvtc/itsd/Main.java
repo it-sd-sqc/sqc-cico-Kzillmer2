@@ -56,7 +56,7 @@ public class Main {
     {
       String current = fb.getDocument().getText(0, fb.getDocument().getLength());
       int resultingLength = current.length() - lengthToDelete + stringToAdd.length();
-      if (stringToAdd.matches("[0-9]+")&& resultingLength <= MAX_LENGTH) {
+      if (stringToAdd.isEmpty() || (stringToAdd.matches("[0-9]+") && resultingLength <= MAX_LENGTH)) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
