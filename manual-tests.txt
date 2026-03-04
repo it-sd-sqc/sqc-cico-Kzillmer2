@@ -61,4 +61,11 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should display "Developer" for the user name.
 
+# Module 6: Enhance manual testing by automatically submitting when input reaches desired input value
 
+## Test steps
+1. Build and run Cico.
+2. Enter 00000000
+
+## Expected results
+* Should automatically submit user credentials for login/log out and return user to main login screen for next user.
