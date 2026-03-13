@@ -41,9 +41,18 @@ public class Main {
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      String current = fb.getDocument().getText(0, fb.getDocument().getLength());
-      if (stringToAdd.matches("[0-9]+") && (current.length() + stringToAdd.length()) <= MAX_LENGTH) {
-        super.insertString(fb, offset, stringToAdd, attr);
+      if (fb.getDocument() != null) {
+
+        int currLength = fb.getDocument().getLength();
+        int updLength = currLength + stringToAdd.length();
+
+        if (updLength <= MAX_LENGTH) {
+          super.insertString(fb, offset, stringToAdd, attr);
+        }
+
+        if (updLength == MAX_LENGTH) {
+          Main.processCard();
+        }
       }
       else {
         Toolkit.getDefaultToolkit().beep();
@@ -54,21 +63,22 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      String current = fb.getDocument().getText(0, fb.getDocument().getLength());
-      int resultingLength = current.length() - lengthToDelete + stringToAdd.length();
-      if (stringToAdd.isEmpty() || (stringToAdd.matches("[0-9]+") && resultingLength <= MAX_LENGTH)) {
-        super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+      if (fb.getDocument() != null) {
+
+        int currLength = fb.getDocument().getLength();
+        int updLength = currLength - lengthToDelete + stringToAdd.length();
+
+        if (updLength <= MAX_LENGTH) {
+          super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+        }
+
+        if (updLength == MAX_LENGTH) {
+          Main.processCard();
+        }
       }
       else {
         Toolkit.getDefaultToolkit().beep();
       }
-    }
-  }
-
-  // Lookup the card information after button press ///////////////////////////
-  public static class Update implements ActionListener {
-    public void actionPerformed(ActionEvent evt) {
-      Main.processCard();
     }
   }
 
@@ -262,12 +272,6 @@ public class Main {
     fieldNumber.setBackground(Color.green);
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
-
-    JButton updateButton = new JButton("Update");
-    updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    updateButton.addActionListener(new Update());
-    updateButton.setForeground(Color.green);
-    panelMain.add(updateButton);
 
     panelMain.add(Box.createVerticalGlue());
 

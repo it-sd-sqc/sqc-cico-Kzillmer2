@@ -89,3 +89,12 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * The status panel should appear after step 2.
 * The main panel should appear immediately after step 3.
+
+# Module 6: Enhance manual testing by automatically submitting when input reaches desired input value
+
+## Test steps
+1. Build and run Cico.
+2. Enter 00000000
+
+## Expected results
+* Should automatically submit user credentials for login/log out and return user to main login screen for next user.
